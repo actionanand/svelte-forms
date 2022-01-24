@@ -340,16 +340,14 @@ var app = (function () {
     	let h1;
     	let t0;
     	let t1;
-    	let t2;
 
     	const block = {
     		c: function create() {
     			h1 = element("h1");
-    			t0 = text("Hello ");
-    			t1 = text(/*name*/ ctx[0]);
-    			t2 = text("!");
-    			attr_dev(h1, "class", "svelte-i7qo5m");
-    			add_location(h1, file, 10, 0, 82);
+    			t0 = text(/*appName*/ ctx[0]);
+    			t1 = text("!");
+    			attr_dev(h1, "class", "capitalize-it svelte-bqju48");
+    			add_location(h1, file, 10, 0, 114);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -358,10 +356,9 @@ var app = (function () {
     			insert_dev(target, h1, anchor);
     			append_dev(h1, t0);
     			append_dev(h1, t1);
-    			append_dev(h1, t2);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*name*/ 1) set_data_dev(t1, /*name*/ ctx[0]);
+    			if (dirty & /*appName*/ 1) set_data_dev(t0, /*appName*/ ctx[0]);
     		},
     		i: noop,
     		o: noop,
@@ -384,34 +381,34 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let { name } = $$props;
-    	const writable_props = ['name'];
+    	let { appName } = $$props;
+    	const writable_props = ['appName'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
-    		if ('name' in $$props) $$invalidate(0, name = $$props.name);
+    		if ('appName' in $$props) $$invalidate(0, appName = $$props.appName);
     	};
 
-    	$$self.$capture_state = () => ({ name });
+    	$$self.$capture_state = () => ({ appName });
 
     	$$self.$inject_state = $$props => {
-    		if ('name' in $$props) $$invalidate(0, name = $$props.name);
+    		if ('appName' in $$props) $$invalidate(0, appName = $$props.appName);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [name];
+    	return [appName];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { name: 0 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { appName: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -423,24 +420,25 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*name*/ ctx[0] === undefined && !('name' in props)) {
-    			console.warn("<App> was created without expected prop 'name'");
+    		if (/*appName*/ ctx[0] === undefined && !('appName' in props)) {
+    			console.warn("<App> was created without expected prop 'appName'");
     		}
     	}
 
-    	get name() {
+    	get appName() {
     		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set name(value) {
+    	set appName(value) {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
     const app = new App({
-    	target: document.body,
+    	// target: document.body,
+      target: document.getElementById('app'),
     	props: {
-    		name: 'world'
+    		appName: 'svelte form'
     	}
     });
 

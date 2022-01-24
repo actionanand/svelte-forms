@@ -3,7 +3,9 @@
 </script>
 
 <style>
-	
+  .capitalize-it {
+    text-transform: capitalize;
+  }
 </style>
 
-<h1>{appName}!</h1>
+<h1 class="capitalize-it">{appName}!</h1>
